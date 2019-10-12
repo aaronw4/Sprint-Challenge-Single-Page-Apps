@@ -7,6 +7,7 @@ export default function Character(props) {
         <section className="character-list"> 
             <Link to={`/${props.id}`}> 
                 <h2>{props.name}</h2>
+                <img src={props.image} alt={props.id}/>
             </Link> 
         </section>
     )

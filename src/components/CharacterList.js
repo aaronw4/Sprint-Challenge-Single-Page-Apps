@@ -37,12 +37,13 @@ export default function CharacterList() {
 }
 
 function CharacterName({char}) {
-  const { name, id } = char;
+  const { name, id, image } = char;
   return( 
     <Route exact path='/' render={props =>
     <Character
     name = {name}
     id = {id}
+    image = {image}
     />}
     />  
   )
