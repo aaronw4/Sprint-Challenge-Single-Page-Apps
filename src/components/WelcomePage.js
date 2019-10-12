@@ -1,4 +1,5 @@
 import React from "react";
+import EnhancedSearchForm from './SearchForm';
 
 export default function WelcomePage(props) {
 
@@ -12,6 +13,7 @@ export default function WelcomePage(props) {
           alt="rick"
         />
       </header>
+      <EnhancedSearchForm/>
     </section>
   );
 }

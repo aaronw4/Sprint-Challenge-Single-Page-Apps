@@ -60,3 +60,11 @@ main {
 .character {
   margin-bottom: 50px;
 }
+
+.form {
+  text-align: center;
+}
+
+.input, .submit {
+  font-size: 1.2rem;
+}
