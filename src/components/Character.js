@@ -6,11 +6,11 @@ export default function Character(props) {
 
     return(
         <section className="character-list"> 
-            <Link to={`/character/${props.id}`}>   
-                {props.names.map(name => (
+            {props.names.map(name => (
+                <Link to={`/character/${name}`}> 
                     <h2>{name}</h2>
-                ))} 
-            </Link> 
+                </Link> 
+            ))}
         </section>
     )
 }

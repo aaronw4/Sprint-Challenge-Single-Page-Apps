@@ -24,17 +24,24 @@ export default function CharacterList() {
 
   return (
     <div>
-      <WelcomePage 
-        names = {characters.map(char => char.name)}
-        id = {characters.map(char => char.id)}
-      />          
+      <CharacterName char={characters}/> 
+      
       {characters.map(char => ( 
-        <CharacterDetails key={char.id} char={char}/>
+        <CharacterDetails key={char.name} char={char}/>
       ))}
     </div>
   );  
 }
 
+function CharacterName({char}) {
+  return(
+    <Route exact path='/' render={props =>
+      <WelcomePage 
+        names = {char.map(char => char.name)}
+      />}
+    />
+  )
+}
 
 function CharacterDetails({char}) {
   const { image, name, species, gender, status } = char;
