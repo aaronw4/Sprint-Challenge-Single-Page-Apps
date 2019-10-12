@@ -1,6 +1,8 @@
 import React from "react";
+import Character from './Character'
 
-export default function WelcomePage() {
+export default function WelcomePage(props) {
+
   return (
     <section className="welcome-page">
       <header>
@@ -11,6 +13,7 @@ export default function WelcomePage() {
           alt="rick"
         />
       </header>
+      <Character names={props.names}/>
     </section>
   );
 }
