@@ -60,17 +60,3 @@ main {
 .character {
   margin-bottom: 50px;
 }
-
-.cardCont {
-  display: flex;
-  justify-content: center;
-}
-
-.cardImg {
-  margin-right: 50px;;
-}
-
-.cardText {
-  color: #11B0C8;
-  font-size: 1.6rem;
-}

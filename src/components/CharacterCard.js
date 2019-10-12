@@ -1,10 +1,25 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
-import Header from './Header'
+import Header from './Header';
+import styled from 'styled-components';
 
 export default function CharacterCard(props) {
   const [character, setCharacter] = useState({});
   const id = window.location.pathname;
+
+  const Container = styled.div`
+    display: flex;
+    justify-content: center;
+  `;
+
+  const Img = styled.div`
+    margin-right: 50px;
+  `;
+
+  const Text = styled.div`
+    color: #11B0C8;
+    font-size: 1.6rem;
+  `
 
   useEffect(() => {
     const getChar = () => {
@@ -24,17 +39,17 @@ export default function CharacterCard(props) {
   return(
     <div className='card'>
       <Header />
-      <div className='cardCont'>
-        <div className='cardImg'>
+      <Container>
+        <Img>
           <img src={character.image} alt={character.id}/>
-        </div>
-        <div className='cardText'>
+        </Img>
+        <Text>
           <h2>{character.name}</h2>
           <p>Species: {character.species}</p>
           <p>Gender: {character.gender}</p>
           <p>Status: {character.status}</p>
-        </div>
-      </div>
+        </Text>
+      </Container>
     </div>
   );
 }
