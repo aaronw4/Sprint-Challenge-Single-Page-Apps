@@ -13,7 +13,6 @@ export default function WelcomePage(props) {
           alt="rick"
         />
       </header>
-      <Character names={props.names}/>
     </section>
   );
 }

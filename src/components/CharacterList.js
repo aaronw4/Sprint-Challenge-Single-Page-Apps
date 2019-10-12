@@ -3,6 +3,7 @@ import axios from "axios";
 import {Route} from "react-router-dom";
 import CharacterCard from './CharacterCard';
 import WelcomePage from './WelcomePage';
+import Character from './Character'
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
@@ -24,22 +25,28 @@ export default function CharacterList() {
 
   return (
     <div>
-      <CharacterName char={characters}/> 
-      
+      <Route exact path='/' component={WelcomePage}/>
+
+      {characters.map(char => (
+        <CharacterName key={char.id}char={char}/> 
+      ))}  
+
       {characters.map(char => ( 
-        <CharacterDetails key={char.name} char={char}/>
+        <CharacterDetails key={char.id} char={char}/>
       ))}
     </div>
   );  
 }
 
 function CharacterName({char}) {
-  return(
+  const { name, id } = char;
+  return( 
     <Route exact path='/' render={props =>
-      <WelcomePage 
-        names = {char.map(char => char.name)}
-      />}
-    />
+    <Character
+    name = {name}
+    id = {id}
+    />}
+    />  
   )
 }
 
