@@ -3,8 +3,8 @@ import React from "react";
 export default function WelcomePage(props) {
 
   return (
-    <section className="welcome-page">
-      <header>
+    <section>
+      <header className='welcome'>
         <h1>Welcome to the ultimate fan site for....</h1>
         <img
           className="main-img"

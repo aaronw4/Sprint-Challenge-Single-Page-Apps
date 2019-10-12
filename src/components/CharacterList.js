@@ -27,11 +27,13 @@ export default function CharacterList() {
     <div>
       <Route exact path='/' component={WelcomePage}/>
 
+      <div className='grid-view'>
       {characters.map(char => (
         <CharacterName key={char.id}char={char}/> 
       ))}  
+      </div>
       
-      <CharacterDetails key={characters.id} char={characters}/>
+      <Route path='/:id' component={CharacterCard}/>
     </div>
   );  
 }
@@ -46,20 +48,5 @@ function CharacterName({char}) {
     image = {image}
     />}
     />  
-  )
-}
-
-function CharacterDetails({char}) {
-  const { image, name, species, gender, status } = char;
-  return(        
-    <Route path='/:id' render={props => 
-      <CharacterCard 
-      image = {image}
-      name = {name}
-      species = {species}
-      gender = {gender}
-      status = {status}
-      />}
-    />
   )
 }
