@@ -30,10 +30,8 @@ export default function CharacterList() {
       {characters.map(char => (
         <CharacterName key={char.id}char={char}/> 
       ))}  
-
-      {characters.map(char => ( 
-        <CharacterDetails key={char.id} char={char}/>
-      ))}
+      
+      <CharacterDetails key={characters.id} char={characters}/>
     </div>
   );  
 }
@@ -53,7 +51,7 @@ function CharacterName({char}) {
 function CharacterDetails({char}) {
   const { image, name, species, gender, status } = char;
   return(        
-    <Route path='/character/:id' render={props => 
+    <Route path='/:id' render={props => 
       <CharacterCard 
       image = {image}
       name = {name}
