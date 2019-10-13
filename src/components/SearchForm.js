@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {withFormik, Form, Field} from 'formik';
+import axios from 'axios';
 
-function SearchForm(props) {
-
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    if (props.status) {
-      setName(props.status);
-    }
-  }, [props.status])
- 
+function SearchForm() {
   return (
     <section className="search-form">
       <Form className='form'>
@@ -28,9 +20,20 @@ const myMapPropsToValues = props => {
   return returnObj;
 }
 
-const myHandleSubmit = (values) => {
-  console.log(values);
-}
+const myHandleSubmit = (values, {setStatus}) => {
+ 
+  axios
+    .get('https://rickandmortyapi.com/api/character/')
+    .then(response => {
+      let data = response.data.results;
+      return data;      
+    })
+    .catch(err => console.log(err));
+  
+  //console.log(data);
+  //let name = arr.map(char => char.name);
+  //console.log(name)
+};
 
 const formikObj = {
   mapPropsToValues: myMapPropsToValues,

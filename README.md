@@ -29,6 +29,14 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 > Answer:
 
+
+
+A benefit of client-side routing is much faster response time.
+The users computer is not required to make url request with each click.
+
+
+
+
 ## Project Set Up
 
 Follow these steps to set up and work on your project:

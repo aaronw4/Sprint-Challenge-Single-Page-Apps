@@ -3,7 +3,7 @@ import axios from 'axios';
 import Header from './Header';
 import styled from 'styled-components';
 
-export default function CharacterCard(props) {
+export default function CharacterCard() {
   const [character, setCharacter] = useState({});
   const id = window.location.pathname;
 
@@ -27,7 +27,6 @@ export default function CharacterCard(props) {
         .get(`https://rickandmortyapi.com/api/character${id}`)
         .then(response => {
           setCharacter(response.data);
-          console.log(response.data);
         })
         .catch(err => {
           console.log(err);

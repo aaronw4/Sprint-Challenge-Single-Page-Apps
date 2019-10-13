@@ -14,7 +14,6 @@ export default function CharacterList() {
         .get('https://rickandmortyapi.com/api/character/')
         .then(response => {
           setCharacters(response.data.results);
-          console.log(response.data.results);
         })
         .catch(err => {
           console.log(err);
@@ -22,14 +21,14 @@ export default function CharacterList() {
     }
     getChar();
   }, []);
-
+  
   return (
     <div>
       <Route exact path='/' component={WelcomePage}/>
 
       <div className='grid-view'>
       {characters.map(char => (
-        <CharacterName key={char.id}char={char}/> 
+        <CharacterName key={char.id} char={char}/> 
       ))}  
       </div>
       
