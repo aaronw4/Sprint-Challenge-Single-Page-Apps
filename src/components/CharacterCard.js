@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import Header from './Header';
 import styled from 'styled-components';
+import Origin from './Origin'
 
 export default function CharacterCard() {
   const [character, setCharacter] = useState({});
@@ -19,6 +20,7 @@ export default function CharacterCard() {
   const Text = styled.div`
     color: #11B0C8;
     font-size: 1.6rem;
+    line-height: 0.5;
   `
 
   useEffect(() => {
@@ -34,6 +36,9 @@ export default function CharacterCard() {
     }
     getChar();
   }, [id]);
+
+  console.log(((character || {}).origin || {}).name)
+  let origin = ((character || {}).origin || {}).name;
   
   return(
     <div className='card'>
@@ -47,6 +52,8 @@ export default function CharacterCard() {
           <p>Species: {character.species}</p>
           <p>Gender: {character.gender}</p>
           <p>Status: {character.status}</p>
+          <p>Origin: {((character || {}).origin || {}).name}</p>
+          <p>Location: {((character || {}).location || {}).name}</p>
         </Text>
       </Container>
     </div>

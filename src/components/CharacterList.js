@@ -14,6 +14,7 @@ export default function CharacterList() {
         .get('https://rickandmortyapi.com/api/character/')
         .then(response => {
           setCharacters(response.data.results);
+          console.log(response.data.results);
         })
         .catch(err => {
           console.log(err);
@@ -21,6 +22,8 @@ export default function CharacterList() {
     }
     getChar();
   }, []);
+
+  let first = characters[0];
   
   return (
     <div>
