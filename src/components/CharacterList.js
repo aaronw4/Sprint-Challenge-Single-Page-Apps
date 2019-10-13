@@ -23,8 +23,6 @@ export default function CharacterList() {
     getChar();
   }, []);
 
-  let first = characters[0];
-  
   return (
     <div>
       <Route exact path='/' component={WelcomePage}/>

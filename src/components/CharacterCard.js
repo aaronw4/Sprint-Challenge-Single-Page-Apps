@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import Header from './Header';
 import styled from 'styled-components';
-import Origin from './Origin'
+import Page from './PageChange'
 
 export default function CharacterCard() {
   const [character, setCharacter] = useState({});
@@ -37,12 +37,10 @@ export default function CharacterCard() {
     getChar();
   }, [id]);
 
-  console.log(((character || {}).origin || {}).name)
-  let origin = ((character || {}).origin || {}).name;
-  
   return(
     <div className='card'>
       <Header />
+      <Page/>
       <Container>
         <Img>
           <img src={character.image} alt={character.id}/>
