@@ -9,13 +9,17 @@ export default function Page() {
   var id = window.location.pathname;
   var number = Number(id.substr(1))
   const [page, setPage] = useState(number);
+  const next = page + 1;
+  const nextLink = `/${next}`;
+  const prev = page - 1;
+  const prevLink = `/${prev}`
   
   let handlePageChange = (pg) => {
     setPage(pg)
   };
     
   return (
-    <div>        
+    <div className='paging'>        
       <Pagination total={total} limit={limit} pageCount={pageCount} currentPage={page}>
         {({pages, currentPage, hasNextPage, hasPreviousPage, previousPage, nextPage, totalPages, getPageItemProps}) => (
           <div>
@@ -26,11 +30,13 @@ export default function Page() {
             </button>
             </Link>
 
+            <Link to={prevLink}>
             {hasPreviousPage && (
               <button {...getPageItemProps({pageValue: previousPage, onPageChange: handlePageChange})}>
                 {'<'}
               </button>
             )}
+            </Link>
 
             {pages.map(page => {
               let activePage = null;
@@ -39,8 +45,8 @@ export default function Page() {
                 activePage = { backgroundColor: '#fdce09' };
               }
               return (
-                <Link to={link}>
-                  <button key={page} style={activePage} 
+                <Link to={link} >
+                  <button key={page} style={activePage} className=".link"
                     {...getPageItemProps({pageValue: page, onPageChange: handlePageChange})}
                   >
                     {page}
@@ -49,7 +55,7 @@ export default function Page() {
               );
             })}
             
-            <Link to={nextPage}>
+            <Link to={nextLink}>
             {hasNextPage && (
               <button {...getPageItemProps({pageValue: nextPage, onPageChange: handlePageChange})}>
                 {'>'}
