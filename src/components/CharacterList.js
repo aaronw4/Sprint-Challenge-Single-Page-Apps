@@ -7,6 +7,9 @@ import Character from './Character'
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
+  const [charSearch, setCharSearch] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const getChar = () => {
@@ -23,9 +26,44 @@ export default function CharacterList() {
     getChar();
   }, []);
 
+  useEffect(() => {
+    axios
+    .get('https://rickandmortyapi.com/api/character/')
+    .then(response => {
+      setCharSearch(response.data.results.name);
+    })
+    .catch(err => console.log(err));
+
+    const results = charSearch.filter(character =>
+      
+      character.toLowerCase().includes(searchTerm)
+    
+    );
+    setSearchResults(results);
+  }, [searchTerm, charSearch]);
+  
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+    console.log(searchTerm);
+  };
+
   return (
     <div>
       <Route exact path='/' component={WelcomePage}/>
+
+      <div className="App">
+        <form>
+          <label for="name">Search:</label>
+          <input
+            id="name"
+            type="text"
+            name="textfield"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleChange}
+          />
+        </form>      
+      </div>
 
       <div className='grid-view'>
       {characters.map(char => (
