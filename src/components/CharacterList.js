@@ -55,6 +55,20 @@ export default function CharacterList() {
         />
       </form>
 
+      <div className="App">
+        <form>
+          <label for="name">Search:</label>
+          <input
+            id="name"
+            type="text"
+            name="textfield"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleChange}
+          />
+        </form>      
+      </div>
+
       <div className='grid-view'>
       {searchResults.map(char => (
         <CharacterName key={char.id} char={char}/> 
