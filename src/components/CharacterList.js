@@ -3,10 +3,12 @@ import axios from "axios";
 import {Route} from "react-router-dom";
 import CharacterCard from './CharacterCard';
 import WelcomePage from './WelcomePage';
-import Character from './Character'
+import Character from './Character';
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const getChar = () => {
@@ -14,6 +16,7 @@ export default function CharacterList() {
         .get('https://rickandmortyapi.com/api/character/')
         .then(response => {
           setCharacters(response.data.results);
+          setSearchResults(response.data.results);
           console.log(response.data.results);
         })
         .catch(err => {
@@ -23,12 +26,37 @@ export default function CharacterList() {
     getChar();
   }, []);
 
+  useEffect(() => {
+    const results = characters.filter(character =>
+      
+      character.name.includes(searchTerm)
+    
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+  
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+    console.log(searchTerm);
+  };
+
   return (
     <div>
       <Route exact path='/' component={WelcomePage}/>
+      <form className='form'>
+        <input
+          id="name"
+          type="text"
+          name="textfield"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleChange}
+          className='input'
+        />
+      </form>
 
       <div className='grid-view'>
-      {characters.map(char => (
+      {searchResults.map(char => (
         <CharacterName key={char.id} char={char}/> 
       ))}  
       </div>

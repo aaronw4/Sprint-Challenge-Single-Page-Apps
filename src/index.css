@@ -65,8 +65,8 @@ main {
   text-align: center;
 }
 
-.input, .submit {
-  font-size: 1.2rem;
+.input {
+  font-size: 1.4rem;
 }
 
 .paging {
