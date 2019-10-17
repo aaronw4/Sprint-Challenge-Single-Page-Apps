@@ -43,6 +43,8 @@ export default function CharacterList() {
   return (
     <div>
       <Route exact path='/' component={WelcomePage}/>
+
+      <Route exact path='/'>
       <form className='form'>
         <input
           id="name"
@@ -54,20 +56,7 @@ export default function CharacterList() {
           className='input'
         />
       </form>
-
-      <div className="App">
-        <form>
-          <label for="name">Search:</label>
-          <input
-            id="name"
-            type="text"
-            name="textfield"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={handleChange}
-          />
-        </form>      
-      </div>
+      </Route>
 
       <div className='grid-view'>
       {searchResults.map(char => (
