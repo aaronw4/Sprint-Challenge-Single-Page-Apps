@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #24325FFF;
 }
 
 main {
@@ -12,6 +13,7 @@ main {
   background: #fff;
   padding: 15px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  background-color: #fae48bff;
 }
 
 .grid-view {
@@ -24,16 +26,50 @@ main {
   min-height: 40vh;
 }
 
-.grid-view div.card.ui {
+.grid-view, div.card.ui {
   margin: 1.25rem;
 }
-/*
-.main-img {
-  display: block;
-  border-radius: 100%;
-  margin: 0 auto;
-} */
 
-header h1 {
+.header h1 {
+  text-align: center;  
+  margin-bottom: 20px;
+  font-size: 3rem;
+}
+
+.welcome, .main-img {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+} 
+
+.welcome {
+  margin-bottom: 100px;
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+}
+
+.character a, .header a {
+  text-decoration: none;
+  color: #11B0C8;
+}
+
+.character h2 {
+  margin-bottom: 0;
+}
+
+.character {
+  margin-bottom: 50px;
+}
+
+.form {
   text-align: center;
+}
+
+.input {
+  font-size: 1.4rem;
+}
+
+.paging {
+  text-align: center;
+  margin-bottom: 30px;
 }

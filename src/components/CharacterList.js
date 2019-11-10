@@ -1,16 +1,83 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {Route} from "react-router-dom";
+import CharacterCard from './CharacterCard';
+import WelcomePage from './WelcomePage';
+import Character from './Character';
 
 export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
+  const [characters, setCharacters] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
+    const getChar = () => {
+      axios
+        .get('https://rickandmortyapi.com/api/character/')
+        .then(response => {
+          setCharacters(response.data.results);
+          setSearchResults(response.data.results);
+          console.log(response.data.results);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    getChar();
   }, []);
 
+  useEffect(() => {
+    const results = characters.filter(character =>
+      
+      character.name.includes(searchTerm)
+    
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
+  
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+    console.log(searchTerm);
+  };
+
   return (
-    <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
-    </section>
-  );
+    <div>
+      <Route exact path='/' component={WelcomePage}/>
+
+      <Route exact path='/'>
+      <form className='form'>
+        <input
+          id="name"
+          type="text"
+          name="textfield"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleChange}
+          className='input'
+        />
+      </form>
+      </Route>
+
+      <div className='grid-view'>
+      {searchResults.map(char => (
+        <CharacterName key={char.id} char={char}/> 
+      ))}  
+      </div>
+      
+      <Route path='/:id' component={CharacterCard}/>
+    </div>
+  );  
+}
+
+function CharacterName({char}) {
+  const { name, id, image } = char;
+  return( 
+    <Route exact path='/' render={props =>
+    <Character
+    name = {name}
+    id = {id}
+    image = {image}
+    />}
+    />  
+  )
 }
